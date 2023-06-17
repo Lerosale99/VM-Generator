@@ -31,12 +31,12 @@ def generate():
 def download(filename):
     return send_file(filename, as_attachment=True)
 
-async def _generate_voice(text, voice, output_file, proxy):
-    communicate = edge_tts.Communicate(text, voice, proxy=proxy)
+async def _generate_voice(text, voice, output_file, http_proxy):
+    communicate = edge_tts.Communicate(text, voice, proxy=http_proxy)
     await communicate.save(output_file)
 def convert_to_wav(input_file, output_file):
     audio = AudioSegment.from_mp3(input_file)
     audio.export(output_file, format="wav")
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=80, debug=False)
+    app.run(host='0.0.0.0', port=800, debug=False)
